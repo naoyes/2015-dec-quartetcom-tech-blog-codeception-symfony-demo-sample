@@ -3,16 +3,25 @@ namespace AppBundle\Utils;
 
 class SluggerTest extends \PHPUnit_Framework_TestCase
 {
-    protected function setUp()
+    /**
+     * @dataProvider getSlugs
+     */
+    public function testSlugify($string, $slug)
     {
+        $slugger = new Slugger();
+        $result = $slugger->slugify($string);
+
+        $this->assertEquals($slug, $result);
     }
 
-    protected function tearDown()
+    public function getSlugs()
     {
-    }
-
-    // tests
-    public function testMe()
-    {
+        return array(
+            array('Lorem Ipsum'     , 'lorem-ipsum'),
+            array('  Lorem Ipsum  ' , 'lorem-ipsum'),
+            array(' lOrEm  iPsUm  ' , 'lorem-ipsum'),
+            array('!Lorem Ipsum!'   , 'lorem-ipsum'),
+            array('lorem-ipsum'     , 'lorem-ipsum'),
+        );
     }
 }
