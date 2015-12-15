@@ -1,4 +1,4 @@
 class_name: FunctionalTester
 modules:
     enabled:
-        - \AppBundleHelper\Functional
+        - \AppBundle\Helper\Functional
